@@ -27,7 +27,7 @@ python3 -m venv .venv
 - Highlight wires. (click wire)
 - Show/hide power ground lines (click port)
 
-## sanokes
+## Samples
 ![NMOS with dc source](./img/nmos.png)
 ![NMOS with dc source (expand)](./img/nmos_expand.png)
 ![DFF with highlight lines and no power/ground](./img/dff_with_highlight_nopg.png)
