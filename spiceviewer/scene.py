@@ -305,7 +305,7 @@ class DiagramScene(QtWidgets.QGraphicsScene):
             self.text(name, (x, y), z + 3, color, size=10, align=align, backing=True)
 
     def draw_mos(self, dev, offset, z):
-        # Vector coordinates from the PMOS and NMOS stencils and bulk arrows in MOSFET.drawio.
+        # Vector coordinates from the PMOS and NMOS stencils in MOSFET.drawio.
         b = dev.box
         scale = MOS_DS_X / 70
 
@@ -332,11 +332,11 @@ class DiagramScene(QtWidgets.QGraphicsScene):
             y += 14
         self.text(dev.part.name, (x + 10, y), z, size=10, bold=True)
 
-        # The attached diagram draws each bulk arrow as an edge over the stencil.
+        # The PMOS body arrow points outward and the NMOS body arrow inward.
         channel, edge = at(46, 55), at(70, 55)
         self.line(channel, edge, z, INK, 1.8)
-        head = 46 if pmos else 70
-        tail = head + (9 if pmos else -9)
+        head = 70 if pmos else 46
+        tail = head + (-9 if pmos else 9)
         arrow = QtGui.QPolygonF([Point(*at(head, 55)), Point(*at(tail, 50)), Point(*at(tail, 60))])
         self.addPolygon(arrow, QtGui.QPen(Qt.NoPen), QtGui.QColor(INK)).setZValue(z + 0.1)
         bulk = pixel(dev.pins[3].tip, offset)
